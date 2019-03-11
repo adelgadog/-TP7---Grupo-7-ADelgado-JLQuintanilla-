@@ -1,4 +1,4 @@
-
+package Codigo;
 
 import java.io.Console;
 import java.io.File;
@@ -18,12 +18,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import Clases.Compra;
+import Clases.Person;
+import Clases.Producto;
+
 public class basededatos {
 
-	public static void main(String[] args) {
+	public void basededatos(Person p) {
 		Compra carrito = new Compra();
-		// boolean comprando = true;
-		Person p = new Person("pepe", 12, true);
+		//Person p = new Person("pepe", 12, true);
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();
 		mapProductos = dameProductos();
 		carrito.setPer(p);
@@ -103,8 +106,9 @@ public class basededatos {
 					carrito.delLista();
 				} else {
 					if (linea.equals("y")) {
-						// guardarDB(carrito);
+						guardarDB(carrito);
 						darTicket(carrito);
+						salir();
 					}
 				}
 			}
@@ -144,15 +148,17 @@ public class basededatos {
 	}
 
 	private static void guardarDB(Compra carrito) {
-		String nombreDB = "historial.db";
+		String nombreDB = "HistorialCompra.db";
 		String cliente = carrito.getPer().getName();
 		ArrayList<Producto> listaproductos = carrito.getLista();
-		String sql2 = "INSERT INTO historial (cliente,fecha,producto,precio_total)VALUES(?,datetime('now'),?,?);";
+		String sql2 = "INSERT INTO historial (usuario,producto,precio,cantidad,total,fecha)VALUES(?,?,?,?,?,datetime('now'));";
 		try (PreparedStatement pstmt = conectaDB(nombreDB).prepareStatement(sql2)) {
 			for (Producto p : listaproductos) {
 				pstmt.setString(1, cliente);
-				pstmt.setString(3, p.getNombre());
-				pstmt.setFloat(4, (p.getPrecio() * p.getCant()));
+				pstmt.setString(2, p.getNombre());
+				pstmt.setFloat(3, p.getPrecio());
+				pstmt.setInt(4, p.getCant());
+				pstmt.setFloat(5, (p.getPrecio() * p.getCant()));
 				pstmt.executeUpdate();
 			}
 		} catch (SQLException o) {
