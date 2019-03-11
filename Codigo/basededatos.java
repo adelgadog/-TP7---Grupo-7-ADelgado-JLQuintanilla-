@@ -1,4 +1,4 @@
-package Codigo;
+
 
 import java.io.Console;
 import java.io.File;
@@ -27,6 +27,7 @@ public class basededatos {
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();
 		mapProductos = dameProductos();
 		carrito.setPer(p);
+
 		while (true) {
 			System.out.println("\n");
 			System.out.println("Estos son los productos que puede comprar: ");
@@ -136,8 +137,6 @@ public class basededatos {
 			wr.write(System.lineSeparator());
 			wr.flush();
 			wr.close();
-			System.out.println("Puede recoger su ticket en la carpeta Tickets.\n");
-			salir();
 		} catch (IOException e) {
 			System.err.println("ERROR");
 			System.err.println("An IOException was caught :" + e.getMessage());
