@@ -24,7 +24,7 @@ import Clases.Producto;
 
 public class basededatos {
 
-	public void basededatos(Person p) {
+	public basededatos(Person p) {
 		Compra carrito = new Compra();
 		//Person p = new Person("pepe", 12, true);
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();

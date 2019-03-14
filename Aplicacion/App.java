@@ -5,9 +5,6 @@ import Codigo.basededatos;
 
 public class App {
 	public void main (String args) {
-		Usuario u = new Usuario();
-		Person p = u.Usuario();
-		basededatos b = new basededatos();
-		b.basededatos(p);
+		Person p = Usuario.crearPerson();
 		}
 }
