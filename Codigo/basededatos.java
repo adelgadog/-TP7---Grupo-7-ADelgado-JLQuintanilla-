@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Scanner;
 
 import Clases.Compra;
 import Clases.Person;
@@ -24,9 +25,10 @@ import Clases.Producto;
 
 public class basededatos {
 
-	public basededatos(Person p) {
+	public static Person basededatos(Person p) {
 		Compra carrito = new Compra();
-		//Person p = new Person("pepe", 12, true);
+		//Person p1 = new Person("pepe", 12, true);
+		//Person p = Usuario.crearPerson();
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();
 		mapProductos = dameProductos();
 		carrito.setPer(p);
@@ -75,8 +77,15 @@ public class basededatos {
 			linea = cons.readLine();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
+		}	
+		/*try {
+			Scanner teclado = new Scanner(System.in);			
+			linea = teclado.nextLine();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}*/
 		return linea;
+		
 	}
 
 	private static void carrito(Compra carrito) {
@@ -209,4 +218,5 @@ public class basededatos {
 		}
 		return conn;
 	}
+
 }

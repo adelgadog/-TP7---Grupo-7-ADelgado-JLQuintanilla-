@@ -18,19 +18,14 @@ public class Usuario {
 		String pass1;
 		Boolean dineros = null;
 
-		System.out.println("¿Es tu primera compra? ");
+		System.out.println("¿Es tu primera compra? hola ");
 		op1 = teclado.nextLine();
 		if (op1.equals("no")) {
-
-
 			System.out.println("Bienvenido.");
 			System.out.println("Introduce un nombre de usuario: ");
 			usuario = teclado.nextLine();
 			System.out.println("Introduce una contraseña: ");
-			pass1 = teclado.nextLine();
-
-	
-
+			pass1 = teclado.nextLine();	
 			String url = "jdbc:sqlite:BDUsuario.db";
 			Connection conn = null;
 			String sqlSelect = "select * from usuario where usuario =? and contraseña =?";
@@ -66,11 +61,18 @@ public class Usuario {
 		}
 
 		if (op1.equals("si")) {
-			System.out.println("Para usar esta aplicación necesitas ser usuario registrado.");
+			System.out.println("Para usar esta aplicación necesitas ser usuario registrado.aaaaaaa");
 			System.out.println("Introduce un nuevo nombre de usuario: ");
 			usuario = teclado.nextLine();
 			System.out.println("Introduce tu contraseña: ");
 			pass1 = teclado.nextLine();
+			System.out.println("Tienes dineros: (si/no)");
+			if(teclado.nextLine().equals("si")) {
+				dineros = true;
+			}
+			else {
+				dineros = false;
+			};
 			teclado.close();
 			String url = "jdbc:sqlite:BDUsuario.db";
 			Connection conn = null;
@@ -79,7 +81,6 @@ public class Usuario {
 				if (conn != null) {
 					//System.out.println("The driver name is " + meta.getDriverName());
 					//System.out.println("A new database has been created.");
-
 					String insertar = "INSERT INTO Usuario (usuario,contraseña,dinero)VALUES(?,?,?);";
 					try (PreparedStatement pstmt = conn.prepareStatement(insertar)) {
 						pstmt.setString(1, usuario);

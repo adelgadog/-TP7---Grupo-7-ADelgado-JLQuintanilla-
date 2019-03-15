@@ -1,0 +1,6 @@
+manzana:	6.0€
+
+El total de su compra es: 6.0€
+
+Gracias por comprar en Quintanilla-Delgado SL.
+
