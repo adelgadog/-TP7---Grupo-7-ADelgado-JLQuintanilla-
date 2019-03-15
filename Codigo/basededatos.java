@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Scanner;
+import java.lang.Integer;
 
 import Clases.Compra;
 import Clases.Person;
@@ -27,25 +27,31 @@ public class basededatos {
 
 	public static Person basededatos(Person p) {
 		Compra carrito = new Compra();
-		//Person p1 = new Person("pepe", 12, true);
-		//Person p = Usuario.crearPerson();
+		// Person p1 = new Person("pepe", 12, true);
+		// Person p = Usuario.crearPerson();
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();
 		mapProductos = dameProductos();
 		carrito.setPer(p);
 
 		while (true) {
 			System.out.println("\n");
-			System.out.println("Estos son los productos que puede comprar: ");
+			System.out.println("	***************************************************");
+			System.out.println("	---------------------------------------------------");
+			System.out.println("	***************************************************");
+			System.out.println("\n");
+			System.out.println("	Estos son los productos que puede comprar: ");
 			System.out.println("\n");
 			Iterator<Integer> it = mapProductos.keySet().iterator();
 			while (it.hasNext()) {
 				Integer key = (Integer) it.next();
-				System.out.println("Id: 	" + key + " Producto: 	" + mapProductos.get(key).split(":")[0]
+				System.out.println("	Id: 	" + key + " Producto: 	" + mapProductos.get(key).split(":")[0]
 						+ "	Precio: 	" + mapProductos.get(key).split(":")[1]);
 			}
 			System.out.println("\n");
-			System.out.println("Indique que produto desea añadir al carrito mediante su identificador.\n"
-					+ "Seleccione '0' para continuar al carrito de la compra. Pulse 'Q' si desea salir del progama.");
+			System.out.println("	---------------------------------------------------");
+			System.out.println("\n");
+			System.out.println("	Indique que produto desea añadir al carrito mediante su identificador.\n"
+					+ "	Seleccione '0' para continuar al carrito de la compra. Pulse 'Q' si desea salir del progama.");
 
 			String linea = eleccion();
 			if (linea.equals("q")) {
@@ -65,7 +71,17 @@ public class basededatos {
 	}
 
 	private static void salir() {
-		System.out.println("Gracias por comprar en Quintanilla-Delgado SL.\n");
+		System.out.println("\n");
+		System.out.println("	***************************************************");
+		System.out.println("	---------------------------------------------------");
+		System.out.println("	***************************************************");
+		System.out.println("\n");
+		System.out.println("	Gracias por comprar en Quintanilla-Delgado SL.\n");
+		System.out.println("\n");
+		System.out.println("	***************************************************");
+		System.out.println("	---------------------------------------------------");
+		System.out.println("	***************************************************");
+		System.out.println("\n");
 		System.exit(0);
 	}
 
@@ -77,15 +93,13 @@ public class basededatos {
 			linea = cons.readLine();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}	
-		/*try {
-			Scanner teclado = new Scanner(System.in);			
-			linea = teclado.nextLine();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}*/
+		}
+		/*
+		 * try { Scanner teclado = new Scanner(System.in); linea = teclado.nextLine(); }
+		 * catch (Exception ex) { ex.printStackTrace(); }
+		 */
 		return linea;
-		
+
 	}
 
 	private static void carrito(Compra carrito) {
@@ -95,18 +109,21 @@ public class basededatos {
 			System.out.println("\n");
 			System.out.println("\n");
 			System.out.println("\n");
-			System.out.println("Estos son todos los productos en su carrito: ");
+			System.out.println("	---------------------------------------------------");
+			System.out.println("	Estos son todos los productos en su carrito: ");
 			System.out.println("\n");
 
 			for (Producto i : lista) {
-				System.out.println(i.getNombre() + " Cantidad: " + i.getCant() + " Precio: " + i.getPrecio());
+				System.out.println("	" + i.getNombre() + " Cantidad: " + i.getCant() + " Precio: " + i.getPrecio());
 				total = total + (i.getPrecio() * i.getCant());
 			}
 			System.out.println("\n");
-			System.out.println("Total de la compra: " + total);
+			System.out.println("	Total de la compra: " + total);
 			System.out.println("\n");
-			System.out.println("Pulse 'y' para confirmar su compra o pulse cualquier tecla para seguir comprando."
-					+ "Pulse '0' si desea vaciar el carrito y volver a comenzar o 'Q' si desea salir.");
+			System.out.println("	---------------------------------------------------");
+			System.out
+					.println("	Pulse 'y' para confirmar su compra o pulse cualquier tecla para seguir comprando.\n"
+							+ "	Pulse '0' si desea vaciar el carrito y volver a comenzar o 'Q' si desea salir.");
 			String linea = eleccion();
 			if (linea.equals("q")) {
 				salir();
@@ -125,7 +142,7 @@ public class basededatos {
 			System.out.println("\n");
 			System.out.println("\n");
 			System.out.println("\n");
-			System.out.println("El carrito aun esta vacio.");
+			System.out.println("	El carrito aun esta vacio.");
 			System.out.println("\n");
 		}
 	}
@@ -144,9 +161,9 @@ public class basededatos {
 				wr.flush();
 				total = total + (p.getPrecio() * p.getCant());
 			}
-			wr.write("El total de su compra es: " + total + "€\n");
+			wr.write("	El total de su compra es: " + total + "€\n");
 			wr.write(System.lineSeparator());
-			wr.write("Gracias por comprar en Quintanilla-Delgado SL.\n");
+			wr.write("	Gracias por comprar en Quintanilla-Delgado SL.\n");
 			wr.write(System.lineSeparator());
 			wr.flush();
 			wr.close();
@@ -157,7 +174,7 @@ public class basededatos {
 	}
 
 	private static void guardarDB(Compra carrito) {
-		String nombreDB = "HistorialCompra.db";
+		String nombreDB = "db/HistorialCompra.db";
 		String cliente = carrito.getPer().getName();
 		ArrayList<Producto> listaproductos = carrito.getLista();
 		String sql2 = "INSERT INTO historial (usuario,producto,precio,cantidad,total,fecha)VALUES(?,?,?,?,?,datetime('now'));";
@@ -181,13 +198,13 @@ public class basededatos {
 		prod.setNombre(valor.split("\\:")[0]);
 		prod.setPrecio(Integer.parseInt(valor.split("\\:")[1]));
 		System.out.println("\n");
-		System.out.println("Cuanta cantidad desea de : " + prod.getNombre());
+		System.out.println("	Cuanta cantidad desea de : " + prod.getNombre());
 		prod.setCant(Integer.parseInt(eleccion()));
 		return prod;
 	}
 
 	private static Map<Integer, String> dameProductos() {
-		String nombreDB = "testdb.db";
+		String nombreDB = "DB/testdb.db";
 		Map<Integer, String> mapProductos = new HashMap<Integer, String>();
 
 		String pregunta = "SELECT id, nombre, precio FROM producto";
@@ -210,8 +227,8 @@ public class basededatos {
 			conn = DriverManager.getConnection(url);
 			if (conn != null) {
 				DatabaseMetaData meta = conn.getMetaData();
-				System.out.println("The driver name is " + meta.getDriverName());
-				System.out.println("A new database has been created.");
+				// System.out.println("The driver name is " + meta.getDriverName());
+				// System.out.println("A new database has been created.");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
