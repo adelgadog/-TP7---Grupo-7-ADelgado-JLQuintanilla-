@@ -12,6 +12,7 @@ Para la ejecución del proyecto es necesario la librería *.jar de SQLite. Se in
 
 Para la ejecución de este proyecto en un primer momento necesitas compilar los códigos.
 Desde el directorio principal escribes:
+
 En Windows:
 
     javac -cp .;sqlite-jdbc-3.25.2.jar;Codigo/*;Clases/*;. App.java
